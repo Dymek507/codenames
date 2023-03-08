@@ -1,8 +1,9 @@
 import React from 'react'
+import Board from '../components/Board'
 
 const JoinGamePage = () => {
   return (
-    <div>JoinGamePage</div>
+    <><Board master={true} /></>
   )
 }
 

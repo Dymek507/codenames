@@ -2,7 +2,8 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div className='w-screen h-screen'>
+    </div>
   )
 }
 

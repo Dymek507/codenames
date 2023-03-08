@@ -1,23 +1,30 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Board } from "../modules/modelTypes";
+import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
+import { CardT } from "../modules/modelTypes";
 
 interface GameState {
-  board: Board;
+  board: CardT[];
 }
 
 const gameSlice = createSlice({
   name: "game",
   initialState: {
-    board: {
-      id: 0,
-      front: false,
-      word: "",
-      color: "",
-    },
+    board: [],
   } as GameState,
   reducers: {
-    toggle(state) {
-      state.board.front = !state.board.front;
+    toggleCard(state, action: PayloadAction<number>) {
+      const id = action.payload;
+      const updatedBoard = [...state.board];
+      const cardToUpdateIndex = updatedBoard.findIndex(
+        (card) => card.id === id
+      );
+      updatedBoard[cardToUpdateIndex].front =
+        !updatedBoard[cardToUpdateIndex].front;
+
+      state.board = updatedBoard;
+    },
+    replaceBoard(state, action: PayloadAction<CardT[]>) {
+      console.log(action.payload);
+      state.board = action.payload;
     },
   },
 });

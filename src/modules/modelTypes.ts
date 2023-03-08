@@ -1,4 +1,4 @@
-export type Board = {
+export type CardT = {
   id: number;
   front: boolean;
   word: string;

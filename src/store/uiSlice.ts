@@ -1,14 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Board } from "../modules/modelTypes";
 
 const uiSlice = createSlice({
   name: "ui",
   initialState: {
-    menu: true,
+    menuOpen: false,
   },
   reducers: {
-    toggle(state) {
-      state.menu = !state.menu;
+    toggle(state, action: PayloadAction<boolean>) {
+      state.menuOpen = action.payload;
     },
   },
 });
