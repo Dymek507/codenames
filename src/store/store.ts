@@ -1,8 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, Store } from "@reduxjs/toolkit";
 import gameSlice from "./gameSlice";
 import uiSlice from "./uiSlice";
 
 const store = configureStore({
+  // const store: Store = configureStore({
   reducer: {
     ui: uiSlice.reducer,
     game: gameSlice.reducer,

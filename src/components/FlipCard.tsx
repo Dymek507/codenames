@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CardT } from '../modules/modelTypes'
+import { CardT } from '../types/modelTypes'
 import { useAppDispatch } from '../store/app/hooks'
 import { updateCardData } from '../store/gameActions'
 import { gameActions } from '../store/gameSlice'

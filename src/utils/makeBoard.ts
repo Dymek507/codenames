@@ -1,6 +1,6 @@
 import React from "react";
-import { CardT } from "../modules/modelTypes";
-import wordsDb from "../data/wordsDb.json";
+import { CardT } from "../types/modelTypes";
+import wordsDb from "../data/words-sorted.json";
 
 interface Distribution {
   color: string;
@@ -15,17 +15,17 @@ const makeBoard = (color: string) => {
         color: "blue",
         amount: 8,
       },
-      {
-        color: "red",
-        amount: 8,
-      },
+      // {
+      //   color: "red",
+      //   amount: 8,
+      // },
       {
         color: "neutral",
-        amount: 7,
+        amount: 11,
       },
       {
         color: "killer",
-        amount: 1,
+        amount: 5,
       },
     ];
 
@@ -61,8 +61,7 @@ const makeBoard = (color: string) => {
   };
 
   //Draw words from db
-  const drawWords = () => {
-    const wordsFromDb = [...wordsDb];
+  const drawWords = (wordsFromDb: string[]) => {
     const id = Math.floor(Math.random() * wordsFromDb.length);
     const word = wordsFromDb[id];
     wordsFromDb.splice(id, 1);
@@ -73,9 +72,10 @@ const makeBoard = (color: string) => {
   const makePattern = (color: string) => {
     const distribution = choseFirst(color);
     const pattern: CardT[] = [];
+    const wordsFromDb = [...wordsDb];
     for (let i = 0; i < 25; i++) {
       const color = drawCard(distribution);
-      const word = drawWords();
+      const word = drawWords(wordsFromDb);
       pattern.push({
         id: i,
         front: false,

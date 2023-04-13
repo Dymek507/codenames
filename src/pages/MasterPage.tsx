@@ -1,10 +1,10 @@
 import React from 'react'
 import Board from '../components/Board'
 
-const JoinGamePage = () => {
+const MasterPage = () => {
   return (
     <><Board master={true} /></>
   )
 }
 
-export default JoinGamePage
+export default MasterPage

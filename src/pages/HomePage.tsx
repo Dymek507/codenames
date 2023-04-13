@@ -1,9 +1,9 @@
 import React from 'react'
+import Board from '../components/Board'
 
 const HomePage = () => {
   return (
-    <div className='w-screen h-screen'>
-    </div>
+    <></>
   )
 }
 

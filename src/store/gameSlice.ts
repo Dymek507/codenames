@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
-import { CardT } from "../modules/modelTypes";
+import { CardT } from "../types/modelTypes";
 
 interface GameState {
   board: CardT[];
@@ -23,7 +23,6 @@ const gameSlice = createSlice({
       state.board = updatedBoard;
     },
     replaceBoard(state, action: PayloadAction<CardT[]>) {
-      console.log(action.payload);
       state.board = action.payload;
     },
   },

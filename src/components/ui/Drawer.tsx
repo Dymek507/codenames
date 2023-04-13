@@ -31,7 +31,7 @@ const menuList = [
   {
     id: 3,
     title: 'Kapitan',
-    link: "/join"
+    link: "/master"
   },
   {
     id: 4,
@@ -61,33 +61,43 @@ export default function Drawer() {
         open={openMenu}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
+        className="text-[10px] lg:text-[0.8em]"
         sx={{
-          // '& .MuiPaper-root': {
-          //   backgroundColor: 'red',
-          //   mt: 20,
-          //   mb: 20
-          // },
           '& .MuiDrawer-paper': {
-            width: 200,
-            backgroundColor: 'red',
-            mt: 20,
-            mb: 20
+            width: '20em',
+            height: '34em',
+            color: 'white',
+            mt: { xs: '1em', md: '12em' },
+            display: 'flex',
+            justifyContent: 'center',
+            borderRadius: '0 50px 50px 0',
+            backgroundImage: 'linear-gradient(0deg, rgba(70,0,94,1) 0%, rgba(117,1,72,1) 53%, rgba(158,59,62,1) 100%)'
           }
         }}
-
       >
         <Box
           role="presentation"
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
         >
-          <List>
+          <List >
             {menuList.map(({ id, title, link }) => (
 
               <Link key={id} to={link} >
-                <ListItem disablePadding>
+                <ListItem disablePadding sx={{
+                  '& span': {
+                    fontSize: '2em',
+                    color: ' white',
+                  },
+                  '& svg': {
+                    fontSize: '4em',
+                    color: ' white',
+                  },
+                  py: 1
+
+                }}>
                   <ListItemButton>
-                    <ListItemIcon>
+                    <ListItemIcon >
                       {id % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                     </ListItemIcon>
                     <ListItemText primary={title} />
@@ -96,7 +106,7 @@ export default function Drawer() {
               </Link>
             ))}
           </List>
-          <Divider />
+          {/* <Divider /> */}
           {/* <List>
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem key={text} disablePadding>
@@ -111,6 +121,6 @@ export default function Drawer() {
           </List> */}
         </Box>
       </SwipeableDrawer>
-    </div>
+    </div >
   );
 }
