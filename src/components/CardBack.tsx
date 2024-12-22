@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import Typography from '@mui/material/Typography';
-import { CardImages } from '../assets';
+import { useEffect, useState } from 'react'
 import { gradients } from '../assets/gradients';
+import '../components/styleCardBack.css'
 
-const normalGradient = {
-  background: 'linear-gradient(to right, #93F9B9, #1D976C)'
-}
+
 
 interface CardBackProps {
   word: string,
@@ -18,13 +15,13 @@ const CardBack = ({ word, color, master }: CardBackProps) => {
 
   const testHeightAdjust = (word: string) => {
     if (word.length <= 4) {
-      setFontSize('2.2em')
+      setFontSize('2rem')
     } else if (word.length > 4 && word.length < 8) {
-      setFontSize('2em')
+      setFontSize('1.8rem')
     } else if (word.length >= 8 && word.length <= 11) {
-      setFontSize('1.6em')
+      setFontSize('1.6rem')
     } else {
-      setFontSize('1.2em')
+      setFontSize('1.3rem')
     }
   }
 
@@ -32,13 +29,16 @@ const CardBack = ({ word, color, master }: CardBackProps) => {
     testHeightAdjust(word)
   }, [word])
 
+  const cardStyle = master ? gradients[color as keyof typeof gradients] : { background: null };
 
   return (
-    <div className='w-full h-full lg:text-[1.2em] rounded-2xl flex-center overflow-hidden shadow-xl p-1'
-      style={master ? gradients[color as keyof CardImages] : normalGradient}>
-      <p className='font-bold rounded-xl' style={{ color: `${color === 'killer' && master ? 'white' : null}`, fontSize: fontSize }}>{word}</p>
+    <div
+      className={`w-full h-full lg:text-[1.2em] flex-center overflow-hidden background border-4 border-white`}
+      style={cardStyle}
+    >
+      <p className='font-bold uppercase rounded-xl' style={{ color: color === 'killer' && master ? 'white' : undefined, fontSize: fontSize }}>{word}</p>
     </div>
-  )
-}
+  );
+};
 
 export default CardBack

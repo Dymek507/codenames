@@ -6,10 +6,12 @@ import { gameActions } from "./gameSlice";
 import makeBoard from "../utils/makeBoard";
 
 export const sendBoardData = (
-  color: string
+  twoPlayers: boolean,
+  color: string,
+  database: string
 ): ThunkAction<void, RootState, unknown, AnyAction> => {
   return async (dispatch, getState) => {
-    const board = makeBoard(color);
+    const board = makeBoard(twoPlayers, color, database);
 
     const userDocRef = doc(db, `games/game`);
     try {

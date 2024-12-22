@@ -1,13 +1,10 @@
-import { Grid } from '@mui/material'
-import React, { useState, useEffect } from 'react'
-import { CardT } from '../types/modelTypes'
-import Card from './CardFront'
+import Grid from '@mui/material/Grid2';
+import { useEffect } from 'react'
 import FlipCard from './FlipCard'
 import { doc, onSnapshot } from "@firebase/firestore";
 import { db } from '../firebaseConfig';
 import { useAppDispatch, useAppSelector } from '../store/app/hooks'
 import { gameActions } from '../store/gameSlice'
-import { updateCardData } from '../store/gameActions'
 import Results from './Results'
 
 interface BoardProps {
@@ -16,30 +13,39 @@ interface BoardProps {
 
 const Board = ({ master }: BoardProps) => {
   const boardData = useAppSelector(state => state.game.board)
-
   const dispatch = useAppDispatch()
+
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "games", "game"), (doc) => {
       if (doc.exists()) {
-        dispatch(gameActions.replaceBoard(doc.data().board))
+        dispatch(gameActions.replaceBoard(doc.data().board));
+      } else {
+        console.error("Document does not exist!");
       }
+    }, (error) => {
+      console.error("Error fetching document:", error);
     });
-  }, []);
+
+    return () => unsub();
+  }, [dispatch]);
+
+  console.log('boardData', boardData)
 
   return (
-    <div className='flex h-full text-[10px] '>
-      <div className='w-full h-full'></div>
-      <div className='h-full flex-center lg:p-4 lg:text-2xl'>
-        <div className='h-full aspect-[3/2] p-1 lg:p-2 rounded-2xl'>
-          <Grid container spacing={1} className="w-full h-full">
-            {boardData.map(card => <Grid key={card.id} item xs={2.4} className=' flex-center'>
+    <Grid container className="wh-full">
+      <Grid size={{ xs: 12, lg: 9 }} className='p-2 flex-center'>
+        <Grid container className="wh-full">
+          {boardData.map((card, index) => (
+            <Grid size={{ xs: 12 / 5 }} key={index} className='w-full p-1 flex-center'>
               <FlipCard card={card} master={master} />
-            </Grid>)}
-          </Grid>
-        </div>
-      </div>
-      <Results boardData={boardData} />
-    </div>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+      <Grid size={{ xs: 12, lg: 3 }} className='flex-center'>
+        <Results boardData={boardData} />
+      </Grid>
+    </Grid>
   )
 }
 

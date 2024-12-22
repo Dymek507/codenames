@@ -1,4 +1,3 @@
-import React from 'react'
 import { CardT } from '../types/modelTypes'
 import Result from './Result'
 
@@ -9,7 +8,7 @@ interface ResultsProps {
 const Results = ({ boardData }: ResultsProps) => {
 
   return (
-    <div className='flex flex-col items-center justify-start h-full w-full pt-10 gap-10 text-[0.5em] lg:text-[1em]'>
+    <div className='flex flex-col items-center justify-start w-full h-full gap-10 pt-10 text-sm '>
       <Result boardData={boardData} color={'red'} />
       <Result boardData={boardData} color={'blue'} />
       <Result boardData={boardData} color={'neutral'} />

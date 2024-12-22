@@ -1,4 +1,3 @@
-import React from 'react'
 import { CardT } from '../types/modelTypes'
 import { gradients } from '../assets/gradients';
 import { CardImages } from '../assets';
@@ -21,11 +20,11 @@ const Result = ({ boardData, color }: ResultProps) => {
 
 
   return (
-    <div className='flex-center h-[7em] w-[20em] bg-sky-900 rounded-xl shadow-lg text-black' style={gradients[color as keyof CardImages]}>
-      <p className='text-[3em]' style={{ color: `${color === 'killer' ? 'white' : null}` }}>
+    <div className='flex-center h-[7rem] w-[16rem] bg-sky-900 rounded-xl shadow-lg text-black' style={gradients[color as keyof CardImages]}>
+      <p className='text-3xl' style={{ color: `${color === 'killer' ? 'white' : 'white'}` }}>
         {teamPoints + "/" + cardQuantity}
       </p>
-      <p className='text-[3em] ml-2' style={{ color: `${color === 'killer' ? 'white' : null}` }}>
+      <p className='ml-2 text-3xl' style={{ color: `${color === 'killer' ? 'white' : 'white'}` }}>
         {color}
       </p>
     </div>
