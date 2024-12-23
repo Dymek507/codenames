@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -20,7 +18,7 @@ import { uiActions } from '../../store/uiSlice';
 const menuList = [
   {
     id: 1,
-    title: 'Home',
+    title: 'Widok',
     link: "/"
   },
   {
@@ -32,11 +30,6 @@ const menuList = [
     id: 3,
     title: 'Kapitan',
     link: "/master"
-  },
-  {
-    id: 4,
-    title: 'Widok',
-    link: "/view"
   },
 ]
 
@@ -70,8 +63,8 @@ export default function Drawer() {
             mt: { xs: '1em', md: '12em' },
             display: 'flex',
             justifyContent: 'center',
-            borderRadius: '0 50px 50px 0',
-            backgroundImage: 'linear-gradient(0deg, rgba(70,0,94,1) 0%, rgba(117,1,72,1) 53%, rgba(158,59,62,1) 100%)'
+            borderRadius: '0 20px 20px 0',
+            backgroundColor: '#242424',
           }
         }}
       >
@@ -106,19 +99,6 @@ export default function Drawer() {
               </Link>
             ))}
           </List>
-          {/* <Divider /> */}
-          {/* <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List> */}
         </Box>
       </SwipeableDrawer>
     </div >

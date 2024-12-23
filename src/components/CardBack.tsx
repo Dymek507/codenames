@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useEffect, useState } from 'react'
 import { gradients } from '../assets/gradients';
 import '../components/styleCardBack.css'

@@ -9,9 +9,10 @@ import Results from './Results'
 
 interface BoardProps {
   master?: boolean
+  displayResults?: boolean
 }
 
-const Board = ({ master }: BoardProps) => {
+const Board = ({ master, displayResults = true }: BoardProps) => {
   const boardData = useAppSelector(state => state.game.board)
   const dispatch = useAppDispatch()
 
@@ -29,8 +30,6 @@ const Board = ({ master }: BoardProps) => {
     return () => unsub();
   }, [dispatch]);
 
-  console.log('boardData', boardData)
-
   return (
     <Grid container className="wh-full">
       <Grid size={{ xs: 12, lg: 9 }} className='p-2 flex-center'>
@@ -42,9 +41,11 @@ const Board = ({ master }: BoardProps) => {
           ))}
         </Grid>
       </Grid>
-      <Grid size={{ xs: 12, lg: 3 }} className='flex-center'>
-        <Results boardData={boardData} />
-      </Grid>
+      {displayResults &&
+        <Grid size={{ xs: 12, lg: 3 }} className='flex-center'>
+          <Results boardData={boardData} />
+        </Grid>
+      }
     </Grid>
   )
 }

@@ -1,9 +1,8 @@
-import duelImage from '../assets/duel_page.png'
 import { motion } from 'framer-motion'
 
 const HomePage = () => {
   return (
-    <div className="bg-center bg-cover wh-full flex-center" style={{ backgroundImage: `url(${duelImage})` }}>
+    <div className="bg-center bg-cover wh-full flex-center" >
       <motion.div
         className="text-[8rem] font-bold text-white transform transition-transform duration-500 hover:scale-110"
         initial={{ opacity: 0, y: -50 }}

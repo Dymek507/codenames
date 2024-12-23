@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { doc, updateDoc } from "@firebase/firestore";
 import { db } from "../firebaseConfig";
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
@@ -10,7 +12,7 @@ export const sendBoardData = (
   color: string,
   database: string
 ): ThunkAction<void, RootState, unknown, AnyAction> => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     const board = makeBoard(twoPlayers, color, database);
 
     const userDocRef = doc(db, `games/game`);

@@ -2,7 +2,7 @@ import Board from '../components/Board'
 
 const MasterPage = () => {
   return (
-    <><Board master={true} /></>
+    <><Board master={true} displayResults={false} /></>
   )
 }
 

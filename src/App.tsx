@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/ui/Layout';
-import CreateGamePage from './pages/CreateGamePage';
-import HomePage from './pages/HomePage';
+import CreateGamePage from './pages/CreateGamePage/rootCreateGamePage';
 import MasterPage from './pages/MasterPage';
 import ViewPage from './pages/ViewPage';
 import store from './store/store';
@@ -17,21 +16,18 @@ function App() {
       element: <Layout />,
       children: [
         {
-          index: true,
-          element: <HomePage />,
+          path: "/",
+          element: <ViewPage />,
         },
         {
-          path: "create",
+          path: "/create",
           element: <CreateGamePage />,
         },
         {
           path: "master",
           element: <MasterPage />,
         },
-        {
-          path: "view",
-          element: <ViewPage />,
-        },
+
       ],
     },
   ]);

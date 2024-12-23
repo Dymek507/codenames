@@ -9,7 +9,7 @@ interface Distribution {
 
 const makeBoard = (twoPlayers: boolean, color: string, database: string) => {
   //Chose first player and add additional card to deck
-  const choseFirst = (color: string) => {
+  const choseFirst = (color: string, twoPlayers: boolean) => {
     const distribution: Distribution[] = [
       {
         color: "blue",
@@ -17,21 +17,22 @@ const makeBoard = (twoPlayers: boolean, color: string, database: string) => {
       },
       {
         color: "red",
-        amount: 8,
+        amount: twoPlayers ? 0 : 8,
       },
       {
         color: "neutral",
-        amount: 8,
+        amount: twoPlayers ? 11 : 7,
       },
       {
         color: "killer",
-        amount: 1,
+        amount: twoPlayers ? 5 : 1,
       },
     ];
 
     const indexCardToAdd = distribution.findIndex(
       (team) => team.color === color
     );
+
     distribution[indexCardToAdd].amount++;
     return distribution;
   };
@@ -69,10 +70,15 @@ const makeBoard = (twoPlayers: boolean, color: string, database: string) => {
   };
 
   // Create pattern of card on the Board
-  const makePattern = (color: string) => {
-    const distribution = choseFirst(color);
+  const makePattern = (
+    color: string,
+    twoPlayers: boolean,
+    dictionary: string
+  ) => {
+    const distribution = choseFirst(color || "blue", twoPlayers);
     const pattern: CardT[] = [];
-    const wordsFromDb = [...originalWords];
+    const words = dictionary === "Standard" ? originalWords : wordsDb;
+    const wordsFromDb = [...words];
     for (let i = 0; i < 25; i++) {
       const color = drawCard(distribution);
       const word = drawWords(wordsFromDb);
@@ -83,10 +89,11 @@ const makeBoard = (twoPlayers: boolean, color: string, database: string) => {
         color: color!,
       });
     }
+    // console.log(pattern);
     return pattern;
   };
 
-  return makePattern(color);
+  return makePattern(color, twoPlayers, database);
 };
 
 export default makeBoard;
