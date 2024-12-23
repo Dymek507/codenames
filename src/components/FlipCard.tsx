@@ -21,7 +21,7 @@ const FlipCard = ({ card, master }: FlipCardProps) => {
   }
 
   return (
-    <div className='w-full aspect-[3/2] bg-transparent cursor-pointer group perspective text-[1rem] rounded-2xl' onClick={clickHandler}>
+    <div className='w-[90%] aspect-[5/2] lg:aspect-[3/2]  bg-transparent cursor-pointer group perspective text-[1rem]' onClick={clickHandler}>
       <div className='relative w-full h-full duration-1000 preserve-3d' style={{ transform: `${card.front ? 'rotateY(180deg)' : 'rotateY(0deg)'}` }}>
         <div className='absolute w-full h-full duration-1000 backface-hidden flex-center' >
           <CardBack word={card.word} color={card.color} master={master} />

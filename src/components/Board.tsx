@@ -33,7 +33,7 @@ const Board = ({ master, displayResults = true }: BoardProps) => {
   return (
     <Grid container className="wh-full">
       <Grid size={{ xs: 12, lg: 9 }} className='p-2 flex-center'>
-        <Grid container className="wh-full">
+        <Grid container className=" wh-full">
           {boardData.map((card, index) => (
             <Grid size={{ xs: 12 / 5 }} key={index} className='w-full p-1 flex-center'>
               <FlipCard card={card} master={master} />
@@ -43,7 +43,7 @@ const Board = ({ master, displayResults = true }: BoardProps) => {
       </Grid>
       {displayResults &&
         <Grid size={{ xs: 12, lg: 3 }} className='flex-center'>
-          <Results boardData={boardData} />
+          < Results boardData={boardData} />
         </Grid>
       }
     </Grid>
